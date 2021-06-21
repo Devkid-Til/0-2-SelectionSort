@@ -7,12 +7,12 @@ public class InsertionSort2 {
 
         // 循环不变量： arr[0, i)有序，arr[i, n)无序
         for (int i = 0; i < arr.length; i++) {
+            int aim_index = i;
             for (int j = i; j > 0; j --){
                 if(arr[j].compareTo(arr[j-1]) < 0) {
-                    swap(arr, j, j-1);
-                } else {
-                    break;
+                    aim_index = j;
                 }
+                insort(arr, i, aim_index);
 
             }
         }
@@ -22,6 +22,13 @@ public class InsertionSort2 {
         E temp = arr[src_index];
         arr[src_index] = arr[dic_index];
         arr[dic_index] = temp;
+    }
+
+    public static <E> void insort(E[] arr, int src_index, int aim_index) {
+        E temp = arr[src_index];
+        if (src_index + 1 - aim_index >= 0)
+            System.arraycopy(arr, aim_index - 1, arr, aim_index, src_index + 1 - aim_index);
+        arr[aim_index] = temp;
     }
 
     public static void main(String[] args) {
