@@ -7,13 +7,8 @@ public class InsertionSort2 {
 
         // 循环不变量： arr[0, i)有序，arr[i, n)无序
         for (int i = 0; i < arr.length; i++) {
-            for (int j = i; j > 0; j --){
-                if(arr[j].compareTo(arr[j-1]) < 0) {
-                    swap(arr, j, j-1);
-                } else {
-                    break;
-                }
-
+            for (int j = i; j > 0 && arr[j].compareTo(arr[j-1]) < 0; j --){
+                swap(arr, j, j-1);
             }
         }
     }
