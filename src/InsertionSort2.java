@@ -7,9 +7,22 @@ public class InsertionSort2 {
 
         // 循环不变量： arr[0, i)有序，arr[i, n)无序
         for (int i = 0; i < arr.length; i++) {
-            for (int j = i; j > 0 && arr[j].compareTo(arr[j-1]) < 0; j --){
+            for (int j = i; j - 1 >= 0 && arr[j].compareTo(arr[j-1]) < 0; j --){
                 swap(arr, j, j-1);
             }
+        }
+    }
+
+    public static <E extends Comparable<E>> void sort2(E[] arr) {
+
+        for (int i = 0; i < arr.length; i++) {
+            E t = arr[i];
+            int j;
+            for (j = i; j - 1 >= 0 && t.compareTo(arr[j-1]) < 0; j--) {
+                arr[j] = arr[j-1];
+            }
+            arr[j] = t;
+
         }
     }
 
@@ -20,10 +33,10 @@ public class InsertionSort2 {
     }
 
     public static void main(String[] args) {
-        Integer[] data = ArrayGenerator.generatorRandomArray(100000,100000);
+        Integer[] data = ArrayGenerator.generatorRandomArray(40000,50000);
 //        ArrayUtils.printArray(data);
         System.out.println(SortingHelper.isSorted(data));
-        InsertionSort2.sort(data);
+        InsertionSort2.sort2(data);
         System.out.println(SortingHelper.isSorted(data));
 
 //        ArrayUtils.printArray(data);
